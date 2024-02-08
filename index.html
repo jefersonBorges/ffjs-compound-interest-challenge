@@ -3,24 +3,17 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="A solution for a compound interest calculator page challenge using HTML, CSS and JavaScript">
-  <title>Calculadora de Juros Compostos</title>
-
+  <meta name="description" content="A solution to a compound interest simulator challenge developed using HTML, CSS and JavaScript">
+  <title>Simulação de Juros Compostos</title>
+  <link rel="shortcut icon" href="assets/image/bank.svg" type="image/x-icon">
   <!--Google icons-->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
   <!--Google fonts-->
-
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;500;700&display=swap" rel="stylesheet">
-
-
   <!--CSS-->
   <link rel="stylesheet" href="./assets/style/main.css">
-
-  <!--JavaScript-->
-  <script src="./assets/script/main.js" defer></script>
-
 </head>
 <body>
   <main>
@@ -28,7 +21,7 @@
       <h1>ciclic</h1>
     </header>
 
-    <form class="investment-calculator-data" id="investment-calculator-data">
+    <form class="investment-simulation-data-entry visible" id="investment-simulation-data-entry" autocomplete="on">
       <fieldset>
         <legend>simulador</legend>
 
@@ -36,21 +29,21 @@
         <div class="input-section">
           <span class="material-symbols-outlined">person</span>
           <input type="text" name="user-name" id="user-name" maxlength="15" placeholder="Nome">
-          <span role="alert" class="alert">insira o nome</span>
+          <span role="alert" class="alert" id="user-name-alert">insira o nome</span>
         </div>
 
         <label for="monthly-payment">mensalidade</label>
         <div class="input-section">
           <span class="material-symbols-outlined">payments</span>
-          <input type="number" name="monthly-payment" id="monthly-payment" min="0.01" step="0.01" placeholder="100,00">
-          <span role="alert" class="alert">insira o valor da mensalidade</span>
+          <input type="number" name="monthly-payment" id="monthly-payment" min="0.01" step="0.01" placeholder="123,45">
+          <span role="alert" class="alert" id="monthly-payment-alert">insira o valor da mensalidade</span>
         </div>
 
         <label for="monthly-interest-rate">juros mensais</label>
         <div class="input-section">
           <span class="material-symbols-outlined">percent</span>
-          <input type="number" name="monthly-interest-rate" id="monthly-interest-rate" min="0.01" step="0.01" placeholder="6,00">
-          <span role="alert" class="alert">insira o valor da taxa mensal</span>
+          <input type="number" name="monthly-interest-rate" id="monthly-interest-rate" min="0.01" step="0.01" placeholder="0,06">
+          <span role="alert" class="alert" id="monthly-interest-rate-alert">insira o valor da taxa mensal</span>
         </div>
 
         <label for="payment-period">tempo</label>
@@ -59,24 +52,26 @@
           <select name="payment-period" id="payment-period">
             <option selected disabled>- selecione -</option>
           </select>
-          <span role="alert" class="alert">selecione uma opção</span>
+          <span role="alert" class="alert" id="payment-period-alert">selecione uma opção</span>
         </div>
 
       </fieldset>
-      <button class="calculate" id="calculate" type="submit">
-        <span class="material-symbols-outlined">calculate</span>
+      <button id="simulateInvestment" type="submit">
+        <span class="material-symbols-outlined simulateIcon" id="simulateIcon">calculate</span>
+        <span class="material-symbols-outlined loadingIcon" id="loadingIcon">refresh</span>
         simular
       </button>
+      
     </form>
-    <section class="investment-calculator-results" id="investment-calculator-results">
-      <article class="results" id="results">
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempora dignissimos accusamus at cumque officiis maiores, animi aspernatur et amet itaque qui nemo iusto consequatur magni, esse libero. Asperiores, necessitatibus beatae?</p>
-      </article>
-      <button>
-        <span class="material-symbols-outlined">autorenew</span>
+    <section class="simulation-results-display hidden" id="simulation-results-display">
+      <p class="result-paragraph" id="result-paragraph"></p>
+      <!--Simulation results here-->
+      <button id="reset-simulation">
+        <span class="material-symbols-outlined">undo</span>
         simular novamente
       </button>
     </section>
   </main>
+  <script src="assets/script/main.js"></script>
 </body>
 </html>

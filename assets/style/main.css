@@ -2,12 +2,33 @@
   --clr-pri: #253237;
   --clr-sec: #5c6b73;
   --clr-ter: #e0fbfc;
-
-  --shadow-pri: 2px 2px 3px 1px black;
-  --shadow-sec: 1px 1px 3px 1px black;
-
+  --clr-qua: #9DB4C0;
+  --clr-danger: #ffa6a6;
+  --ff-pri: 'Roboto', sans-serif;
+  --f-out: fade-out 1s linear;
+  --f-in: fade-in 1s linear;
+  --rotate: rotate-clockwise 1s linear infinite;
 }
-
+@keyframes fade-in {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}
+@keyframes fade-out {
+  0% { opacity: 1; }
+  100% { opacity: 0; }
+}
+@keyframes rotate-clockwise {
+  100% { 
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg); 
+  }
+}
+@-moz-keyframes rotate-clockwise {
+  100% { -moz-transform: rotate(360deg); }
+}
+@-webkit-keyframes rotate-clockwise {
+  100% { -webkit-transform: rotate(360deg); }
+}
 *::after,
 *::before,
 * {
@@ -15,65 +36,62 @@
   padding: 0;
   box-sizing: border-box;
 }
-
 body {
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100dvh;
-
   background-color: var(--clr-pri);
+  font-family: var(--ff-pri);
+  font-size: 1em;
   color: var(--clr-ter);
-  font-family: 'Roboto', sans-serif;
 }
-
 main {
-  border: .25rem solid var(--clr-ter);
-  border-radius: 1rem;
-  box-shadow: var(--shadow-pri);
-  
-
   display: grid;
   grid-template-columns: auto;
   align-items: center;
   gap: 1rem;
   padding: 1rem;
   width: 20rem;
-
+  border: .25rem solid var(--clr-ter);
+  border-radius: 1rem;
+  box-shadow: 2px 2px 4px 1px black;
 }
-
 header {
   padding: .5rem;
   background-color: var(--clr-sec);
   border-radius: .5rem;
   text-align: center;
 }
-
 legend,
 label,
 h1 {
   text-transform: capitalize;
 }
-
 legend {
   font-size: 1.25rem;
   font-weight: bold;
   margin-bottom: 1rem;
 }
-
-.investment-calculator-data {
+.investment-simulation-data-entry.visible {
+  animation: var(--f-in);
   display: grid;
+}
+.investment-simulation-data-entry.hidden {
+  animation: var(--f-out);
+  display: none;
+}
+.investment-simulation-data-entry {
   gap: 2rem;
 }
-
-.investment-calculator-data fieldset {
+fieldset {
   display: grid;
-  grid-template-columns: 5fr 6fr;
+  grid-template-columns: 7rem 10rem;
+  justify-content: space-between;
   align-items: center;
-  gap: 1.5rem;
+  row-gap: 1.5rem;
   border: none;
 }
-
 .material-symbols-outlined {
   font-variation-settings:
   'FILL' 0,
@@ -81,66 +99,114 @@ legend {
   'GRAD' 0,
   'opsz' 24;
   padding: .25rem;
-  text-align: center;
 }
-
-.investment-calculator-data .input-section {
-  position: relative;
+.input-section,
+button {
   display: grid;
-  grid-template-columns: 1fr 4fr;
+  grid-template-columns: 2rem 7.5rem;
+  justify-content: space-between;
   align-items: center;
-  border: 2px solid var(--clr-ter);
   border-radius: .5rem;
 }
-
+.input-section {
+  position: relative;
+  border: 2px solid var(--clr-ter);
+}
 input,
 select {
   height: 100%;
-  width: 100%;
+  padding: .25rem;
   border: none;
   border-radius: inherit;
   background-color: inherit;
+  font-weight: bold;
   text-align: center;
   color: var(--clr-ter);
 }
-
-input::-webkit-outer-spin-button,
+select option {
+  background-color: var(--clr-pri);
+}
+input.danger,
+select.danger {
+  box-shadow: inset 0px 0px 6px 2px var(--clr-danger);
+}
+input:hover,
+select:hover {
+  box-shadow: inset 0px 0px 1px 2px var(--clr-ter);
+} 
+input, /* For IOS box-shadow to work*/
+input::-webkit-outer-spin-button, /* For Hiding the arrows of numeric input*/
 input::-webkit-inner-spin-button {
   -webkit-appearance: none;
-  margin: 0;
+  margin: 0px;
 }
-
 .alert {
-  position: absolute;
-  top: 100%;
-  width: 100%;
-  color: red;
-  text-align: right;
   display: none;
+  position: absolute;
+  top: 110%;
+  width: 100%;
+  text-align: right;
+  font-size: .725rem;
+  color: var(--clr-danger)
 }
-
+.alert.danger {
+  display: block;
+}
 button {
   display: flex;
   justify-content: center;
   align-items: center;
   justify-self: center;
   gap: .5rem;
-  padding: .5rem;
-
+  padding: 1rem;
   background-color: var(--clr-sec);
   border-radius: .5rem;
   border: none;
-  box-shadow: var(--shadow-sec);
-
+  box-shadow: 2px 2px 0px 2px black;
   text-transform: capitalize;
   font-size: 1.25rem;
   font-weight: bold;
   color: var(--clr-ter);
 }
-
-.investment-calculator-results {
+button > .simulateIcon{
+  display: block;
+}
+button > .loadingIcon{
+  display: none;
+}
+button.loading > .simulateIcon{
+  display: none;
+}
+button.loading > .loadingIcon{
+  display: block;
+  -webkit-animation: var(--rotate);
+  -moz-animation: var(--rotate);
+  animation: var(--rotate);
+}
+button:hover {
+  background-color: var(--clr-qua);
+  cursor: pointer;
+}
+button:active {
+  box-shadow: 1px 1px 0px 1px black;
+  transform: translateY(1px);
+}
+button > .material-symbols-outlined {
+  font-size: 1.75em;
+}
+.simulation-results-display.visible {
+  animation: var(--f-in);
   display: grid;
+}
+.simulation-results-display.hidden {
+  display: none;
+}
+.simulation-results-display {
   grid-template-columns: auto;
   gap: 1.5rem;
-  display: none;
+  padding: 1rem;
+  font-size: 1.25rem;
+}
+.simulation-results-display strong {
+  text-transform: capitalize;
 }
