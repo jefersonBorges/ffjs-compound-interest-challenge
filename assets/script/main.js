@@ -154,7 +154,7 @@ const investmentSimulation = {
 }
 
 const api = {
-  url: 'http://api.mathjs.org/v4/',
+  url: 'https://api.mathjs.org/v4/',
 
   setConfigs: function(monthlyPayment, monthlyInterestRate, paymentPeriod) {
     const bodyData = {
