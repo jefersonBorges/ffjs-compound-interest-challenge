@@ -23,7 +23,7 @@ Esta aplicação consiste na solução de um desafio de desenvolvimento de um **
 
 ### O desafio
 
-O desafio consiste em uma aplicação para simulação de juros compostos de um investimento com duas telas, uma para coleta de dados e a outra para exibição do resultado. o Desafio original poide ser encontrado [aqui](https://github.com/thiagocontaparatestes/testes-vaga-emprego/blob/main/teste-juros-compostos.md).
+O desafio consiste em uma aplicação para simulação de juros compostos de um investimento com duas telas, uma para coleta de dados e a outra para exibição do resultado. o Desafio original pode ser encontrado [aqui](https://github.com/thiagocontaparatestes/testes-vaga-emprego/blob/main/teste-juros-compostos.md).
 
 #### Comportamento esperado
 
@@ -69,7 +69,7 @@ A segunda tela deverá exibir um texto com as informaçoes dos campos de nome, m
 
 **Wireframe de exemplo:**
 
-![Layout Mock Link](https://raw.githubusercontent.com/ciclic/test-frontend/master/wireframe.png)
+![Layout Wireframe Link](https://raw.githubusercontent.com/ciclic/test-frontend/master/wireframe.png)
 
 #### Critérios do desafio
 
